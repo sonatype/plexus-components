@@ -25,11 +25,14 @@ package org.codehaus.plexus.resource;
  */
 
 import java.io.InputStream;
+import java.io.File;
 
 import org.codehaus.plexus.resource.loader.ResourceNotFoundException;
+import org.codehaus.plexus.resource.loader.FileResourceCreationException;
 
 /**
  * @author <a href="mailto:trygvis@inamo.no">Trygve Laugst&oslash;l</a>
+ * @author Jason van Zyl
  * @version $Id$
  */
 public interface ResourceManager
@@ -38,4 +41,7 @@ public interface ResourceManager
 
     InputStream getResourceAsInputStream( String name )
         throws ResourceNotFoundException;
+
+    File getResourceAsFile( String name )
+        throws ResourceNotFoundException, FileResourceCreationException;
 }

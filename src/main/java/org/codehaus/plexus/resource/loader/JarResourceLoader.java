@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @plexus.component
+ * @author Jason van Zyl
+ * @plexus.component role-hint="jar"
  */
 public class JarResourceLoader
     extends AbstractResourceLoader

@@ -1,4 +1,4 @@
-package org.codehaus.plexus.resource.manager;
+package org.codehaus.plexus.resource.loader.manager;
 
 /*
  * The MIT License

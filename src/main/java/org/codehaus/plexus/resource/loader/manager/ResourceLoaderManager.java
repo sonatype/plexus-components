@@ -1,4 +1,4 @@
-package org.codehaus.plexus.resource.manager;
+package org.codehaus.plexus.resource.loader.manager;
 
 /*
  * The MIT License
@@ -24,40 +24,15 @@ package org.codehaus.plexus.resource.manager;
  * SOFTWARE.
  */
 
-import java.util.Map;
 import java.util.Iterator;
-import java.util.Collections;
-
-import org.codehaus.plexus.logging.AbstractLogEnabled;
-import org.codehaus.plexus.personality.plexus.lifecycle.phase.Initializable;
-import org.codehaus.plexus.personality.plexus.lifecycle.phase.InitializationException;
 
 /**
  * @author <a href="mailto:trygvis@inamo.no">Trygve Laugst&oslash;l</a>
  * @version $Id$
  */
-public class DefaultResourceLoaderManager
-    extends AbstractLogEnabled
-    implements ResourceLoaderManager, Initializable
+public interface ResourceLoaderManager
 {
-    /** @requirement */
-    private Map resourceLoaders;
+    String ROLE = ResourceLoaderManager.class.getName();
 
-    // ----------------------------------------------------------------------
-    // Component Lifecycle
-    // ----------------------------------------------------------------------
-
-    public void initialize()
-        throws InitializationException
-    {
-    }
-
-    // ----------------------------------------------------------------------
-    // ResourceLoaderManager Implementation
-    // ----------------------------------------------------------------------
-
-    public Iterator getResourceLoaders()
-    {
-        return Collections.unmodifiableCollection( resourceLoaders.values() ).iterator();
-    }
+    public Iterator getResourceLoaders();
 }

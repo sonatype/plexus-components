@@ -36,8 +36,9 @@ import org.codehaus.plexus.resource.loader.ResourceNotFoundException;
 
 /**
  * @author <a href="mailto:trygvis@inamo.no">Trygve Laugst&oslash;l</a>
+ * @author Jason van Zyl
  * @version $Id$
- * @plexus.component
+ * @plexus.component role-hint="file"
  */
 public class FileResourceLoader
     extends AbstractResourceLoader
