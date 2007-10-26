@@ -1,5 +1,21 @@
 package org.codehaus.plexus.apacheds;
 
+/*
+ * Copyright 2001-2007 The Codehaus.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import org.apache.directory.server.configuration.MutableServerStartupConfiguration;
 import org.apache.directory.server.core.configuration.MutablePartitionConfiguration;
 import org.apache.directory.server.core.configuration.ShutdownConfiguration;
@@ -18,6 +34,7 @@ import org.apache.directory.server.schema.bootstrap.Krb5kdcSchema;
 import org.apache.directory.server.schema.bootstrap.NisSchema;
 import org.apache.directory.server.schema.bootstrap.SystemSchema;
 import org.apache.directory.server.jndi.ServerContextFactory;
+import org.apache.directory.server.ldap.LdapConfiguration;
 import org.codehaus.plexus.logging.AbstractLogEnabled;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.Startable;
 import org.codehaus.plexus.personality.plexus.lifecycle.phase.StartingException;
@@ -66,6 +83,11 @@ public class DefaultApacheDs
      * @plexus.configuration default-value="10389"
      */
     private int port;
+    
+    /**
+     * @plexus.configuration default-value="secret"
+     */
+    private String password;
 
     // ----------------------------------------------------------------------
     //
@@ -99,7 +121,7 @@ public class DefaultApacheDs
         Hashtable environment = new Hashtable( configuration.toJndiEnvironment() );
         environment.put( Context.INITIAL_CONTEXT_FACTORY, ServerContextFactory.class.getName() );
         environment.put( Context.SECURITY_PRINCIPAL, "uid=admin,ou=system" );
-        environment.put( Context.SECURITY_CREDENTIALS, "secret" );
+        environment.put( Context.SECURITY_CREDENTIALS, password );
         environment.put( Context.SECURITY_AUTHENTICATION, "simple" );
 //        environment.put( Context.PROVIDER_URL, "dc=hauskeeper,dc=codehaus,dc=org" );
         return new InitialDirContext( environment );
@@ -113,7 +135,7 @@ public class DefaultApacheDs
         Hashtable environment = new Hashtable( configuration.toJndiEnvironment() );
         environment.put( Context.INITIAL_CONTEXT_FACTORY, ServerContextFactory.class.getName() );
         environment.put( Context.SECURITY_PRINCIPAL, "uid=admin,ou=system" );
-        environment.put( Context.SECURITY_CREDENTIALS, "secret" );
+        environment.put( Context.SECURITY_CREDENTIALS, password );
         environment.put( Context.SECURITY_AUTHENTICATION, "simple" );
         environment.put( Context.PROVIDER_URL, "ou=system" );
         return new InitialDirContext( environment );
@@ -123,7 +145,7 @@ public class DefaultApacheDs
         throws NamingException
     {
     	MutablePartitionConfiguration configuration = new MutablePartitionConfiguration();
-        configuration.setName( name );
+        configuration.setId( name );
         configuration.setSuffix( root );
         configuration.setIndexedAttributes( indexedAttributes );
         configuration.setContextEntry( partitionAttributes );
@@ -135,13 +157,13 @@ public class DefaultApacheDs
     {	
     	MutablePartitionConfiguration configuration = new MutablePartitionConfiguration();
 
-        configuration.setName( partition.getName() );
+        configuration.setId( partition.getName() );
         configuration.setSuffix( partition.getSuffix() );
         configuration.setIndexedAttributes( partition.getIndexedAttributes() );
         configuration.setContextEntry( partition.getContextAttributes() );
         //configuration.setSynchOnWrite( true );
         configuration.setCacheSize( 1 );
-        configuration.setOptimizerEnabled( false );
+        //configuration.setOptimizerEnabled( false );
         partitionConfigurations.add( configuration );
     }
 
@@ -210,40 +232,25 @@ public class DefaultApacheDs
         Properties environment = new Properties();
         environment.setProperty( "java.naming.security.authentication", "simple" );
         environment.setProperty( "java.naming.security.principal", "uid=admin,ou=system" );
-        environment.setProperty( "java.naming.security.credentials", "secret" );
+        environment.setProperty( "java.naming.security.credentials", password );
 
         MutableServerStartupConfiguration configuration = new MutableServerStartupConfiguration();
         configuration.setWorkingDirectory( basedir );
         configuration.setAllowAnonymousAccess( true );
-        configuration.setEnableNtp( false );
-        configuration.setEnableKerberos( false );
-        configuration.setEnableChangePassword( false );
-        configuration.setLdapPort( port );
+        //configuration.setEnableNtp( false );
+        //configuration.setEnableKerberos( false );
+        //configuration.setEnableChangePassword( false );
+        LdapConfiguration config = new LdapConfiguration();
+        config.setIpPort( port );
+        configuration.setLdapConfiguration( config );
         configuration.setEnableNetworking( enableNetworking );
         configuration.setSynchPeriodMillis( 100 );
 
         configuration.setPartitionConfigurations( partitionConfigurations );
 
-        
-        
-        Set bootstrapSchemas = new HashSet();
-        bootstrapSchemas.add( new AutofsSchema() );
-        bootstrapSchemas.add( new CorbaSchema() );
-        bootstrapSchemas.add( new CoreSchema() );
-        bootstrapSchemas.add( new CosineSchema() );
-        bootstrapSchemas.add( new ApacheSchema() );
-        bootstrapSchemas.add( new CollectiveSchema() );
-        bootstrapSchemas.add( new InetorgpersonSchema() );
-        bootstrapSchemas.add( new JavaSchema() );
-        bootstrapSchemas.add( new Krb5kdcSchema() );
-        bootstrapSchemas.add( new NisSchema() );
-        bootstrapSchemas.add( new SystemSchema() );
-        bootstrapSchemas.add( new ApachednsSchema() );
-        //configuration.setBootstrapSchemas( bootstrapSchemas );
-
         Properties env = new Properties();
         env.setProperty( Context.SECURITY_PRINCIPAL, "uid=admin,ou=system" );
-        env.setProperty( Context.SECURITY_CREDENTIALS, "secret" );
+        env.setProperty( Context.SECURITY_CREDENTIALS, password );
         env.setProperty( Context.SECURITY_AUTHENTICATION, "simple" );
         env.setProperty( Context.PROVIDER_URL, "ou=system" );
         env.setProperty( Context.INITIAL_CONTEXT_FACTORY, ServerContextFactory.class.getName() );
@@ -257,6 +264,8 @@ public class DefaultApacheDs
         this.configuration = configuration;
 
         getLogger().info( "Started Apache Directory Server server." );
+        
+        stopped = false;
     }
 
     public void stopServer()
@@ -327,4 +336,16 @@ public class DefaultApacheDs
             throw new NamingException( "The server has to be started before used." );
         }
     }
+
+    public int getPort()
+    {
+        return port;
+    }
+
+    public void setPort( int port )
+    {
+        this.port = port;
+    }
+    
+    
 }

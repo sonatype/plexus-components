@@ -1,48 +1,59 @@
-<project>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <parent>
     <artifactId>plexus-components</artifactId>
     <groupId>org.codehaus.plexus</groupId>
-    <version>1.1.5</version>
+    <version>1.1.12</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <artifactId>plexus-apacheds</artifactId>
   <name>Plexus Apache Directory Server Components</name>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0-alpha-1</version>
   <dependencies>
     <dependency>
       <groupId>org.apache.directory.server</groupId>
       <artifactId>apacheds-core</artifactId>
-      <version>1.5.0</version>
+      <version>${apacheds.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.directory.server</groupId>
       <artifactId>apacheds-core-shared</artifactId>
-      <version>1.5.0</version>
+      <version>${apacheds.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.directory.server</groupId>
       <artifactId>apacheds-server-jndi</artifactId>
-      <version>1.5.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.directory.server</groupId>
-      <artifactId>apacheds-schema-bootstrap</artifactId>
-      <version>1.5.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.directory.server</groupId>
-      <artifactId>apacheds-schema-registries</artifactId>
-      <version>1.5.0</version>
+      <version>${apacheds.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.directory.server</groupId>
       <artifactId>apacheds-schema-extras</artifactId>
-      <version>1.5.0</version>
+      <version>${apacheds.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.directory.server</groupId>
+      <artifactId>apacheds-bootstrap-partition</artifactId>
+      <version>${apacheds.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.directory.server</groupId>
+      <artifactId>apacheds-schema-registries</artifactId>
+      <version>${apacheds.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.directory.server</groupId>
+      <artifactId>apacheds-schema-extras</artifactId>
+      <version>${apacheds.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>1.4.3</version>
+    </dependency>
+    <!-- 
+    <dependency>
+      <groupId>org.apache.directory.server</groupId>
       <artifactId>apacheds-server-main</artifactId>
-      <version>1.5.0</version>
+      <version>${apacheds.version}</version>
       <exclusions>
         <exclusion>
           <groupId>springframework</groupId>
@@ -86,6 +97,7 @@
         </exclusion>
       </exclusions>
     </dependency>
+    -->
   </dependencies>
   <build>
     <plugins>
@@ -115,4 +127,13 @@
       </plugin>
     </plugins>
   </build>
+  <properties>
+    <apacheds.version>1.5.1</apacheds.version>
+  </properties>
+
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/plexus/plexus-components/tags/plexus-apacheds-1.0-alpha-1</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/plexus/plexus-components/tags/plexus-apacheds-1.0-alpha-1</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/plexus/plexus-components/tags/plexus-apacheds-1.0-alpha-1</url>
+  </scm>
 </project>
