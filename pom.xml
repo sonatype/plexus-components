@@ -3,12 +3,18 @@
 
   <parent>
     <groupId>org.codehaus.plexus</groupId>
-    <artifactId>plexus</artifactId>
-    <version>1.0.13</version>
+    <artifactId>plexus-components</artifactId>
+    <version>1.1.13</version>
   </parent>
 
   <artifactId>plexus-interpolation</artifactId>
-  <version>1.9-SNAPSHOT</version>
+  <version>1.10</version>
 
   <name>Plexus Interpolation API</name>
+
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/plexus/plexus-components/tags/plexus-interpolation-1.10</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/plexus/plexus-components/tags/plexus-interpolation-1.10</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/plexus/plexus-components/tags/plexus-interpolation-1.10</url>
+  </scm>
 </project>
