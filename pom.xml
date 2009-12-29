@@ -6,11 +6,11 @@
   <parent>
     <groupId>org.codehaus.plexus</groupId>
     <artifactId>plexus-components</artifactId>
-    <version>1.1.16-SNAPSHOT</version>
+    <version>1.1.16</version>
   </parent>
 
   <artifactId>plexus-compiler</artifactId>
-  <version>1.6-SNAPSHOT</version>
+  <version>1.6</version>
   <packaging>pom</packaging>
 
   <name>Plexus Compiler</name>
@@ -21,6 +21,12 @@
     <module>plexus-compiler-manager</module>
     <module>plexus-compilers</module>
   </modules>
+  
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/plexus/plexus-components/tags/plexus-compiler-1.6</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/plexus/plexus-components/tags/plexus-compiler-1.6</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/plexus/plexus-components/tags/plexus-compiler-1.6</url>
+  </scm>  
 
   <dependencyManagement>
     <dependencies>
@@ -46,7 +52,7 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>3.8.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
