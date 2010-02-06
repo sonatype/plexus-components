@@ -7,6 +7,8 @@
     <artifactId>plexus-compilers</artifactId>
     <version>1.7</version>
   </parent>
+  
+  <version>1.7.1</version>
 
   <artifactId>plexus-compiler-javac</artifactId>
 
@@ -17,5 +19,34 @@
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-compiler-api</artifactId>
+      <version>1.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-compiler-test</artifactId>
+      <version>1.7</version>
+    </dependency>
   </dependencies>
+  
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/plexus/plexus-components/tags/plexus-compiler-javac-1.7.1</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/plexus/plexus-components/tags/plexus-compiler-javac-1.7.1</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/plexus/plexus-components/tags/plexus-compiler-javac-1.7.1</url>
+  </scm>  
+  
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <configuration>
+            <tagBase>https://svn.codehaus.org/plexus/plexus-components/tags</tagBase>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 </project>
