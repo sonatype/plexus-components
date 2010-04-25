@@ -6,13 +6,19 @@
   <parent>
     <artifactId>plexus-components</artifactId>
     <groupId>org.codehaus.plexus</groupId>
-    <version>1.1.16</version>
+    <version>1.1.17</version>
   </parent>
 
   <artifactId>plexus-archiver</artifactId>
-  <version>1.0-alpha-13-SNAPSHOT</version>
+  <version>1.0</version>
 
   <name>Plexus Archiver Component</name>
+
+  <scm>
+    <connection>scm:svn:http://svn.codehaus.org/plexus/plexus-components/tags/plexus-archiver-1.0</connection>
+    <developerConnection>scm:svn:https://svn.codehaus.org/plexus/plexus-components/tags/plexus-archiver-1.0</developerConnection>
+    <url>http://fisheye.codehaus.org/browse/plexus/plexus-components/tags/plexus-archiver-1.0</url>
+  </scm>
 
   <contributors>
     <contributor>
@@ -31,11 +37,12 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
+      <version>2.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-io</artifactId>
-      <version>1.0-alpha-5</version>
+      <version>1.0</version>
     </dependency>
   </dependencies>
 </project>
