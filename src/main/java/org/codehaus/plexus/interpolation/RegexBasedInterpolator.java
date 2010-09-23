@@ -291,48 +291,51 @@ public class RegexBasedInterpolator
 
             if ( recursionInterceptor.hasRecursiveExpression( realExpr ) )
             {
-                throw new InterpolationException( "Detected the following recursive expression cycle: "
-                                                                  + recursionInterceptor.getExpressionCycle( realExpr ),
-                                                  wholeExpr );
+                throw new InterpolationCycleException( recursionInterceptor, realExpr, wholeExpr );
             }
 
             recursionInterceptor.expressionResolutionStarted( realExpr );
-
-            Object value = existingAnswers.get( realExpr );
-            for ( Iterator it = valueSources.iterator(); it.hasNext() && value == null; )
+            try
             {
-                ValueSource vs = (ValueSource) it.next();
-
-                value = vs.getValue( realExpr );
-            }
-
-            if ( value != null )
-            {
-                value = interpolate( String.valueOf( value ), recursionInterceptor, expressionPattern, realExprGroup );
-                
-                if ( postProcessors != null && !postProcessors.isEmpty() )
+                Object value = existingAnswers.get( realExpr );
+                for ( Iterator it = valueSources.iterator(); it.hasNext() && value == null; )
                 {
-                    for ( Iterator it = postProcessors.iterator(); it.hasNext(); )
-                    {
-                        InterpolationPostProcessor postProcessor = (InterpolationPostProcessor) it.next();
-                        Object newVal = postProcessor.execute( realExpr, value );
-                        if ( newVal != null )
-                        {
-                            value = newVal;
-                            break;
-                        }
-                    }
+                    ValueSource vs = (ValueSource) it.next();
+
+                    value = vs.getValue( realExpr );
                 }
 
-                // could use:
-                // result = matcher.replaceFirst( stringValue );
-                // but this could result in multiple lookups of stringValue, and replaceAll is not correct behaviour
-                result = StringUtils.replace( result, wholeExpr, String.valueOf( value ) );
+                if ( value != null )
+                {
+                    value =
+                        interpolate( String.valueOf( value ), recursionInterceptor, expressionPattern, realExprGroup );
 
-                matcher.reset( result );
+                    if ( postProcessors != null && !postProcessors.isEmpty() )
+                    {
+                        for ( Iterator it = postProcessors.iterator(); it.hasNext(); )
+                        {
+                            InterpolationPostProcessor postProcessor = (InterpolationPostProcessor) it.next();
+                            Object newVal = postProcessor.execute( realExpr, value );
+                            if ( newVal != null )
+                            {
+                                value = newVal;
+                                break;
+                            }
+                        }
+                    }
+
+                    // could use:
+                    // result = matcher.replaceFirst( stringValue );
+                    // but this could result in multiple lookups of stringValue, and replaceAll is not correct behaviour
+                    result = StringUtils.replace( result, wholeExpr, String.valueOf( value ) );
+
+                    matcher.reset( result );
+                }
             }
-
-            recursionInterceptor.expressionResolutionFinished( realExpr );
+            finally
+            {
+                recursionInterceptor.expressionResolutionFinished( realExpr );
+            }
         }
         
         return result;
