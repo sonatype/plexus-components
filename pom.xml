@@ -32,9 +32,9 @@
   </modules>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/plexus/plexus-components/trunk/</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/plexus/plexus-components/trunk</developerConnection>
-    <url>http://fisheye.codehaus.org/browse/plexus/plexus-components/trunk/</url>
+    <connection>scm:git:git@github.com:sonatype/plexus-components.git</connection>
+    <developerConnection>scm:git:git@github.com:sonatype/plexus-components.git</developerConnection>
+    <url>http://github.com/sonatype/plexus-components</url>
   </scm>
   <issueManagement>
     <system>JIRA</system>
