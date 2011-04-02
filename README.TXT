@@ -1,8 +1,8 @@
 Some plexus-components have moved to their dedicated GitHub repository:
 - plexus-archiver -> https://github.com/sonatype/plexus-archiver
 - plexus-compiler -> https://github.com/sonatype/plexus-compiler
-- plexus-interpolation ->  -> https://github.com/sonatype/plexus-interpolation
-- plexus-io ->  -> https://github.com/sonatype/plexus-io
+- plexus-interpolation -> https://github.com/sonatype/plexus-interpolation
+- plexus-io -> https://github.com/sonatype/plexus-io
 
 Some plexus-components have moved to the redback svn:
 - plexus-cache -> https://svn.codehaus.org/redback/plexus-components/trunk/plexus-cache/

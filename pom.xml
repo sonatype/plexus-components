@@ -20,14 +20,10 @@
 
 
   <modules>
-    <module>plexus-archiver</module>
     <module>plexus-cli</module>
-    <module>plexus-compiler</module>
     <module>plexus-digest</module>
     <module>plexus-i18n</module>
     <module>plexus-interactivity</module>
-    <module>plexus-interpolation</module>
-    <module>plexus-io</module>
     <module>plexus-resources</module>
     <!--
     <module>plexus-swizzle</module>
