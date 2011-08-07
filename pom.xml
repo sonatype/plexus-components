@@ -4,13 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>plexus</artifactId>
     <groupId>org.codehaus.plexus</groupId>
-    <version>2.0.7</version>
+    <artifactId>plexus</artifactId>
+    <version>3.0.1</version>
     <relativePath>../pom/pom.xml</relativePath>
   </parent>
 
-  <groupId>org.codehaus.plexus</groupId>
   <artifactId>plexus-components</artifactId>
   <version>1.1.19-SNAPSHOT</version>
   <packaging>pom</packaging>
@@ -51,7 +50,7 @@
       <dependency>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-utils</artifactId>
-        <version>1.5.5</version>
+        <version>3.0</version>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -65,16 +64,8 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.4</source>
-          <target>1.4</target>
-        </configuration>
-      </plugin>
-      <plugin>
         <groupId>org.codehaus.plexus</groupId>
         <artifactId>plexus-component-metadata</artifactId>
-        <version>1.5.4</version>
         <executions>
           <execution>
             <goals>
@@ -100,65 +91,6 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>maven-3</id>
-      <activation>
-        <file>
-          <!-- This employs that the basedir expression is only recognized by Maven 3.x (see MNG-2363) -->
-          <exists>${basedir}</exists>
-        </file>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <version>2.1</version>
-            <inherited>false</inherited>
-            <executions>
-              <execution>
-                <id>attach-descriptor</id>
-                <goals>
-                  <goal>attach-descriptor</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>  
-    <profile>
-      <id>m2e</id>
-      <activation>
-        <property>
-          <name>m2e.version</name>
-        </property>
-      </activation>
-      <properties>
-        <m2BuildDirectory>target</m2BuildDirectory>
-      </properties>
-      <build>
-        <directory>${m2BuildDirectory}</directory>
-        <plugins>
-          <plugin>
-            <groupId>org.maven.ide.eclipse</groupId>
-            <artifactId>lifecycle-mapping</artifactId>
-            <version>0.10.0</version>
-            <configuration>
-              <mappingId>customizable</mappingId>
-              <configurators>
-                <configurator id="org.maven.ide.eclipse.jdt.javaConfigurator" />
-                <configurator id="org.maven.ide.eclipse.plexus.annotations.plexusConfigurator" />
-                <configurator id="org.maven.ide.eclipse.modello.modelloConfigurator" />
-              </configurators>
-              <mojoExecutions>
-                <mojoExecution>org.apache.maven.plugins:maven-resources-plugin::</mojoExecution>
-              </mojoExecutions>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>  
   </profiles>
   
 </project>
