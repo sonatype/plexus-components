@@ -6,12 +6,12 @@
   <parent>
     <artifactId>plexus-components</artifactId>
     <groupId>org.codehaus.plexus</groupId>
-    <version>1.1.18</version>
+    <version>1.1.20</version>
   </parent>
 
   <groupId>org.codehaus.plexus</groupId>
   <artifactId>plexus-cli</artifactId>
-  <version>1.6-SNAPSHOT</version>
+  <version>1.6</version>
 
   <name>Plexus CLI</name>
   <description>Easily create CLIs with Plexus components</description>
