@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.codehaus.plexus</groupId>
     <artifactId>plexus</artifactId>
-    <version>3.0.1</version>
+    <version>3.1-SNAPSHOT</version>
     <relativePath>../pom/pom.xml</relativePath>
   </parent>
 
@@ -92,5 +92,19 @@
       </build>
     </profile>
   </profiles>
+
+  <repositories>
+    <repository>
+      <id>plexus.snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/plexus-snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
   
 </project>
