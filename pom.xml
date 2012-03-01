@@ -18,17 +18,17 @@
   <url>http://plexus.codehaus.org/plexus-components</url>
 
 
-  <modules>
+  <!--modules>
     <module>plexus-cli</module>
     <module>plexus-digest</module>
     <module>plexus-i18n</module>
     <module>plexus-interactivity</module>
     <module>plexus-resources</module>
+    <module>plexus-velocity</module>
+  </modules-->
     <!--
     <module>plexus-swizzle</module>
     -->
-    <module>plexus-velocity</module>
-  </modules>
 
   <scm>
     <connection>scm:git:git@github.com:sonatype/plexus-components.git</connection>
