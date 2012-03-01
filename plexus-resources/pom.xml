@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.codehaus.plexus</groupId>
     <artifactId>plexus-components</artifactId>
-    <version>1.1.20</version>
+    <version>1.1.21-SNAPSHOT</version>
   </parent>
 
   <artifactId>plexus-resources</artifactId>
-  <version>1.0</version>
+  <version>1.1-SNAPSHOT</version>
 
   <name>Plexus Resource Component</name>
   <description>A component to transparently retrieve resources from the filesystem, classpath or internet.</description>
