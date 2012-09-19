@@ -11,7 +11,7 @@
   </parent>
 
   <artifactId>plexus-components</artifactId>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.2</version>
   <packaging>pom</packaging>
 
   <name>Plexus Components</name>
@@ -34,6 +34,7 @@
     <connection>scm:git:git@github.com:sonatype/plexus-components.git</connection>
     <developerConnection>scm:git:git@github.com:sonatype/plexus-components.git</developerConnection>
     <url>http://github.com/sonatype/plexus-components</url>
+    <tag>plexus-components-1.2</tag>
   </scm>
   <issueManagement>
     <system>JIRA</system>
